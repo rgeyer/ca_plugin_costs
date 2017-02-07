@@ -1,0 +1,5 @@
+{
+    "account_id": 123456,
+    "oauth_refresh_token": "yourtoken",
+    "shard": "us-3.rightscale.com"
+}
