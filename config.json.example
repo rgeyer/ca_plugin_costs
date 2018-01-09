@@ -1,5 +1,6 @@
 {
     "account_id": 123456,
     "oauth_refresh_token": "yourtoken",
-    "shard": "us-3.rightscale.com"
+    "shard": "us-3.rightscale.com",
+    "csv_file": "example.csv"
 }

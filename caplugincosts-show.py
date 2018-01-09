@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import requests,logging,json,os,csv
 
 from requests import *
@@ -57,17 +58,7 @@ if os.path.isfile("config.json"):
     config = json.loads(config_text)
 
     response = oauth_authentication()
-    # response = send_request("POST", "/api/cloud_bills/actions/filter_options", data=json.dumps({'start_time': "2016-01-01T00:00:00", 'end_time': "2016-01-30T00:00:00", 'filter_types': ["cloud_bill:account_id"]}))
-    # print_request(response)
-
-    with open(config['csv_file'], 'rb') as csvfile:
-        spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
-        for row in spamreader:
-            datetimeobj = datetime.strptime(str(row[3]),"%m/%d/%Y")
-            datetimestr = datetimeobj.strftime("%Y-%m-%dT00:00:00")
-            datajson = {"start_time": datetimestr, "account_href": "/api/accounts/{}".format(config["account_id"]), "total_cost": row[2], "product": row[0], "product_category": row[4]}
-            datastr = json.dumps(datajson)
-            response = send_request("POST", "/api/plugin_costs", data=datastr)
-            print_request(response)
+    response = send_request("GET", "/api/plugin_costs")
+    print_request(response)
 else:
     print "gotta has config"
